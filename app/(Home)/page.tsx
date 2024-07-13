@@ -38,16 +38,20 @@
 
 
 import Link from "next/link";
+import styles from "styles/home.module.css";
+import Movie from "components/client/movie";
+import {API_URL} from "util/constant";
 
-export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
+// page component의 경우 export 가능한 것의 제한이 있다.
+// export const API_URL = "https://nomad-movies.nomadcoders.workers.dev/movies";
 
 async function getMovies() {
     console.log("서버 콘솔에서만 보임!!")
 
     // for loading test
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // await new Promise(resolve => setTimeout(resolve, 1000));
 
-    const res = await fetch(API_URL);
+    const res = await fetch(API_URL.MOVIE_BASE);
     return await res.json();
 }
 
@@ -59,12 +63,15 @@ export default async function HomePage() { // async func for data fetching
     const movies = await getMovies();
     // return <div>{ JSON.stringify(movies) }</div>
     return (
-        <div>
+        <div className={styles.container}>
             {
                 movies?.map(item => (
-                    <li key={item.id}>
-                        <Link href={`/movies/${item.id}`}>{item.title}</Link>
-                    </li>
+                    <Movie title={item.title}
+                           key={item.id} id={item.id}
+                           poster_path={item.poster_path} />
+                    // <li key={item.id}>
+                    //     <Link href={`/movies/${item.id}`}>{item.title}</Link>
+                    // </li>
                 ))
             }
         </div>

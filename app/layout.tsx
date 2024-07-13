@@ -1,4 +1,6 @@
-import Navigation from "../components/client/Navigation";
+import "../styles/global.css"
+
+import Navigation from "../components/client/navigation";
 import {Metadata} from "next";
 
 export const metadata : Metadata = {

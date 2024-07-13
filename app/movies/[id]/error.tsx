@@ -1,3 +1,5 @@
+"use client"
+
 export default function MovieDetailError() {
-    return <h1>Someting Error Occured</h1>
+    return <h1>Something Error Occured</h1>
 }
